@@ -1,6 +1,7 @@
 # DagAssistClassic
 
-This is not my addon, I've just fixed some errors so it works with World of Warcraft Classic
+This is not my addon, I've just fixed some errors so it works with World of Warcraft Classic.
+
 original addon can be found here: https://www.curseforge.com/wow/addons/dag-assist
 
 Entropy
