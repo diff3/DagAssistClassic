@@ -1,0 +1,195 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXMLx\UI.xsd">
+
+	<Font name="DagAssistConfigFont" font="Fonts\ARIALN.TTF" virtual="true">
+		<FontHeight>
+			<AbsValue val="14"/>
+		</FontHeight>
+		<Color r="0" g="0" b="0"/>
+	</Font>
+	
+	<Button name="DA_Button" virtual="true">
+		<NormalTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Up"/>
+		<PushedTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Down"/>
+		<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+	</Button>
+	
+	<Button name="DA_Button2" virtual="true">
+		<NormalTexture inherits="DialogButtonNormalTexture"/>
+		<PushedTexture inherits="DialogButtonPushedTexture"/>
+		<HighlightTexture inherits="DialogButtonHighlightTexture"/>
+		<NormalFont style="GameFontNormal"/>
+		<HighlightFont style="GameFontHighlight"/>
+	</Button>
+
+	<Button name="DAConfig_MenuButtonTemplate" inherits="DA_MenuButtonTemplate" virtual="true">
+		<Size><AbsDimension y="21"/></Size>
+		<Anchors>
+			<Anchor point="LEFT" relativePoint="LEFT" />
+			<Anchor point="RIGHT" relativePoint="RIGHT" />
+		</Anchors>
+		<ButtonText name="$parentText" justifyH="LEFT" justifyV="MIDDLE" >
+			<Anchors>
+				<Anchor point="LEFT">
+					<Offset>
+						<AbsDimension x="25" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</ButtonText>
+	    <NormalTexture file="Interface\Buttons\UI-Quickslot2">
+			<Size><AbsDimension x="32" y="32"/></Size>
+			<Anchors>
+				<Anchor point="TOPLEFT">
+				  <Offset>
+					<AbsDimension x="-6.5" y="6.5" />
+				  </Offset>
+				</Anchor>
+			</Anchors>
+	    </NormalTexture>
+	    <PushedTexture file="Interface\Buttons\UI-Quickslot-Depress">
+			<Size><AbsDimension x="18" y="18"/></Size>
+			<Anchors><Anchor point="TOPLEFT"/></Anchors>
+	    </PushedTexture>
+		<HighlightTexture name="$parentHighlight" file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD">
+			<Size><AbsDimension x="18" y="18"/></Size>
+			<Anchors><Anchor point="TOPLEFT"/></Anchors>
+		</HighlightTexture>
+	</Button> 
+	
+	<Frame name="DA_Combobox" virtual="true" inherits="UIDropDownMenuTemplate">
+		<Scripts>
+			<OnLoad>
+				local cboBox = self;
+				cboBox.OnClick =  function(self)
+									UIDropDownMenu_SetSelectedID(cboBox, self:GetID());
+									cboBox.PreviousItem = cboBox.SelectedItem;
+									cboBox.SelectedItem = self.value;
+									if (type(cboBox["OnClickEvent"]) == 'function') then
+										cboBox["OnClickEvent"](cboBox, cboBox.SelectedItem);
+									end
+								end
+								
+				cboBox.AddRange = function(items)
+									cboBox.ComboItems = items;
+									UIDropDownMenu_Initialize(cboBox, cboBox.Initialize);
+									UIDropDownMenu_SetSelectedID(cboBox, 1);
+									cboBox.PreviousItem = nil;
+									cboBox.SelectedItem = items[1];
+								end
+								
+				cboBox.Initialize = function(self, level)
+									local info = UIDropDownMenu_CreateInfo();
+									for k,v in pairs(cboBox.ComboItems) do
+										info = UIDropDownMenu_CreateInfo();
+										info.text = v;
+										info.value = v;
+										info.func = cboBox.OnClick;
+										UIDropDownMenu_AddButton(info, level);
+									end
+								end
+				
+				UIDropDownMenu_SetWidth(cboBox, 120);
+				UIDropDownMenu_SetButtonWidth(cboBox, 174)
+				UIDropDownMenu_JustifyText(cboBox, "LEFT")
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	
+
+	<EditBox name="DA_Editbox" virtual="true" letters="80">
+		<TextInsets>
+			<AbsInset left="6" right="6" top="0" bottom="0" />
+		</TextInsets>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTopLeft" file="Interface\Common\Common-Input-Border-TL">
+					<Size>
+						<AbsDimension x="8" y="8"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="0" y="0"/>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTopRight" file="Interface\Common\Common-Input-Border-TR">
+					<Size>
+						<AbsDimension x="8" y="8"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset x="0" y="0"/>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTop" file="Interface\Common\Common-Input-Border-T">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTopLeft" relativePoint="TOPRIGHT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentTopRight" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBottomLeft" file="Interface\Common\Common-Input-Border-BL">
+					<Size>
+						<AbsDimension x="8" y="8"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset x="0" y="0"/>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBottomRight" file="Interface\Common\Common-Input-Border-BR">
+					<Size>
+						<AbsDimension x="8" y="8"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset x="0" y="0"/>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBottom" file="Interface\Common\Common-Input-Border-B">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentBottomLeft" relativePoint="TOPRIGHT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentBottomRight" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLeft" file="Interface\Common\Common-Input-Border-L">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTopLeft" relativePoint="BOTTOMLEFT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentBottomLeft" relativePoint="TOPRIGHT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRight" file="Interface\Common\Common-Input-Border-R">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTopRight" relativePoint="BOTTOMLEFT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentBottomRight" relativePoint="TOPRIGHT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border-M">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentLeft" relativePoint="TOPRIGHT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentRight" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnShow>
+				self:SetBackdropColor(0, 0, 0, 1);
+				self:ClearFocus();
+			</OnShow>
+			<OnEscapePressed>
+				self:ClearFocus();
+			</OnEscapePressed>
+			<OnEnterPressed>
+				if (type(self["OnEnterEvent"]) == 'function') then
+					self["OnEnterEvent"](self, self:GetText());
+				end
+			</OnEnterPressed>
+		</Scripts>
+		<FontString inherits="ChatFontNormal"></FontString>
+	</EditBox>
+
+</Ui>

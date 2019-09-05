@@ -1,0 +1,74 @@
+﻿------------------------------------------------
+--                 DagAssist                  --
+--             Dagos of Cenarius              --
+------------------------------------------------
+
+TODO(Entropy) Pet, Deamon tab not working
+TODO(Entropy) Spell rank not working. Ex. Warlocks can create 5 different Healthstones
+              with it's own ID. I removed this type of spells from DagAssistCLassic_Menu
+
+1.0 Classic
+* Updated TOC for 1.0 Classic
+* Fix for spellID
+* Removed spells from DagAssistCLassic_Menu. Lot of spells, professions and races
+  are not present in Classic.
+* Fixed. DAG menu appearing above quest tracker now.
+
+6.00
+* Updated TOC for 6.0
+5.03
+* Updated TOC for 5.3
+5.00
+* Updated TOC for 5.0
+4.10
+* Updated TOC for 4.1
+4.04
+* Added Cancel button to config window
+* Raised frame strata of config window
+* Hearthstone will once again show the bind location
+
+4.03
+* Added instructions to the configuration panel
+* Added move up/down buttons to the section editor
+* Pressing ESC will now close the menu except while in combat
+* Menu items are prepopulated with some defaults when first installed
+* Fixed bug preventing the pickup of spells once placed in the menu
+* Fixed taint issue if you tried to change the menu items while in combat
+* Added "/dagassist reset" command line to reset the menu to defaults
+* Moved frame strata
+* Fixed problem with menu items not loading properly on startup
+
+4.01
+* Configurable!
+
+2.07
+* Updated Paladin and Warlock menus with suggestions from Raloo @ Wowinterface.  Thanks!
+
+2.06
+* Added Aspect of the Dragonhawk
+
+2.05
+* Updated for 3.0.8
+
+2.04
+* Added Deathgate and Runeforging for Death Knights
+* Fixed the redundant Track Humanoids
+
+2.03
+* Fixed problem with items not in the cache causing an error on first startup
+* Self-cast and focus-cast shortcuts now work
+* Glowing-hand selection now functions properly
+* Added spell cooldowns
+* Fixed the %d problem with spell & item cooldowns
+
+2.02
+* Fixed the buff type
+
+2.01
+* Fixed several small bugs
+
+2.0
+* Initial release for 3.0 / WotLK
+* Complete rewrite of inner workings
+* Added many abilities and professions
+* Translations are no longer necessary.  Using the built-in localization for everything

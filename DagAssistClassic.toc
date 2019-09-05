@@ -1,0 +1,14 @@
+## Interface: 11302
+## Title: DagAssistClassic
+## Author: Entropy (Classic), Dagos (Cenarius) original coder
+## Notes: Convenient shortcut menu
+## Version: 1.0
+## DefaultState: enabled
+## LoadOnDemand: 0
+## SavedVariablesPerCharacter: DA_Vars
+
+DagAssistClassic_Menu.lua
+DagAssistClassic.xml
+DagAssistClassic.lua
+DagAssistClassicConfig.xml
+DagAssistClassicConfig.lua
