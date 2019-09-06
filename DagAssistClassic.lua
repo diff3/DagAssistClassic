@@ -18,15 +18,15 @@ end
 -- Setup slash command for resetting variables and position
 SLASH_DAGASSIST1, SLASH_DAGASSIST2 = '/dagassist', '/da';
 function DagAssist.SlashHandler(msg, editbox)
-	local title = GetAddOnMetadata("DagAssist", "title").." v"..GetAddOnMetadata("DagAssist", "version");
+	local title = GetAddOnMetadata("DagAssistClassic", "title").." v"..GetAddOnMetadata("DagAssistClassic", "version");
 	if msg == 'reset' then
 		if (InCombatLockdown() == 1) then
 			print("<"..title.."> Reset cannot be completed in combat!");
 		else
 			DA_Vars = {Minimap = {}};
 			DagAssist.LoadMenu();
-			DagAssistConfigLoadHeaders();
-			DagAssist:PositionMinimapButton();
+		--	DagAssistConfigLoadHeaders();
+			 DagAssist:PositionMinimapButton();
 			print("<"..title.."> Reset complete");
 		end
 	else
@@ -42,7 +42,7 @@ btnMinimap:RegisterForDrag("LeftButton");
 btnMinimap:SetClampedToScreen(true);
 
 local texture = btnMinimap:CreateTexture(nil, "ARTWORK");
-texture:SetTexture("Interface\\AddOns\\DagAssist\\Images\\MinmapIconHighlight");
+texture:SetTexture("Interface\\AddOns\\DagAssistClassic\\Images\\MinmapIconHighlight");
 texture:SetBlendMode("BLEND");
 texture:SetAllPoints(btnMinimap);
 btnMinimap:SetHighlightTexture(texture);
@@ -235,6 +235,15 @@ function DagAssist:LoadMenu()
 		return;
 	end
 
+  local menu = DagAssist.Menu;
+  if (not DA_Vars.Menu) then
+    DA_Vars.Menu = DagAssist.LoadDefaultMenu()
+  end
+  
+  if (not DagAssist.Buttons) then
+    DagAssist.Buttons = {};
+  end
+
 	DagAssist.MenuLoaded = false;
 	DagAssist.AllIconsSet = false;
 	btnMinimap:SetScript("OnUpdate", DagAssist.OnUpdate);
@@ -248,13 +257,7 @@ function DagAssist:LoadMenu()
 		menuItems = table.new();
 	]]);
 
-	local menu = DagAssist.Menu;
-	if (not DA_Vars.Menu) then
-		DA_Vars.Menu = DagAssist.LoadDefaultMenu()
-	end
-	if (not DagAssist.Buttons) then
-		DagAssist.Buttons = {};
-	end
+
 	local menuItems = DA_Vars.Menu;
 	local btnMenuItem;
 	for index = 1, table.getn(menuItems) do

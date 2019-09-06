@@ -47,7 +47,7 @@ fraConfig:SetScript("OnMouseUp",
 fraConfig.lblTitle = fraConfig:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge");
 fraConfig.lblTitle:SetPoint("TOPLEFT", fraConfig, "TOPLEFT", 16, -16);
 fraConfig.lblTitle:SetHeight(25);
-fraConfig.lblTitle:SetText(GetAddOnMetadata("DagAssist", "title").." v"..GetAddOnMetadata("DagAssist", "version"));
+fraConfig.lblTitle:SetText(GetAddOnMetadata("DagAssistClassic", "title").." v"..GetAddOnMetadata("DagAssistClassic", "version"));
 
 -- Instructions
 fraConfig.lblInstructions = fraConfig:CreateFontString(nil, 'ARTWORK');
